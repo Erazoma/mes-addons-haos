@@ -1,0 +1,100 @@
+[32m2026-11-13 21:38:34.506+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/2c829f0e repository from https://github.com/bytenoodle/hassioaddon[0m
+[32m2026-11-13 21:38:34.508+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/539df76c repository from https://github.com/tr4nt0r/pyload-ng[0m
+[32m2026-11-13 21:38:34.508+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/45df7312 repository from https://github.com/zigbee2mqtt/hassio-zigbee2mqtt[0m
+[32m2026-11-13 21:38:34.508+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/bd7f4045 repository from https://github.com/d-two/hassio-addons[0m
+[32m2026-11-13 21:38:34.508+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/9904ebc2 repository from https://github.com/glasshome/homeassistant-addon[0m
+[32m2026-11-13 21:38:34.509+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/9074a9fa repository from https://github.com/brenner-tobias/ha-addons[0m
+[32m2026-11-13 21:38:34.513+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/81f33d0f repository from https://github.com/homeassistant-ai/ha-mcp[0m
+[32m2026-11-13 21:38:34.520+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/db21ed7f repository from https://github.com/alexbelgium/hassio-addons[0m
+[33m2026-11-13 21:38:56.673+01:00 WARNING (SyncWorker_2) [supervisor.store.data] Can't read /data/apps/local/vinted-ai-hunter/config.yaml: does not match regular expression ^(?:https?|\[PROTO:\w+\]):\/\/\[HOST\]:\[PORT:\d+\].*$ for dictionary value @ data['webui']. Got 'http://[HOST]:[PORT]:8501'[0m
+[33m2026-11-13 21:38:56.674+01:00 WARNING (SyncWorker_2) [supervisor.apps.validate] App 'Livre de Recettes IA' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 21:38:56.689+01:00 WARNING (SyncWorker_0) [supervisor.apps.validate] App 'pyLoad-ng' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 21:38:56.689+01:00 WARNING (SyncWorker_0) [supervisor.apps.validate] App 'pyLoad-ng' uses legacy map type 'addon_config'; use 'app_config' instead.[0m
+[32m2026-11-13 21:38:57.106+01:00 INFO (MainThread) [supervisor.store] Loading apps from store: 269 all - 0 new - 0 remove[0m
+[32m2026-11-13 22:37:38.799+01:00 INFO (MainThread) [supervisor.resolution.check] Starting system checks with state running[0m
+[32m2026-11-13 22:37:38.799+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for docker_config/system[0m
+[32m2026-11-13 22:37:38.799+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for disk_lifetime/system[0m
+[32m2026-11-13 22:37:38.801+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for dns_server_ipv6_error/dns_server[0m
+[32m2026-11-13 22:37:38.854+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for ipv4_connection_problem/system[0m
+[32m2026-11-13 22:37:38.855+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for dns_server_failed/dns_server[0m
+[32m2026-11-13 22:37:38.855+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for disabled_data_disk/system[0m
+[32m2026-11-13 22:37:38.855+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for pwned/addon[0m
+[32m2026-11-13 22:37:38.855+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for app_port_conflict/addon[0m
+[32m2026-11-13 22:37:38.855+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for free_space/system[0m
+[32m2026-11-13 22:37:38.856+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for deprecated_arch_app/addon[0m
+[32m2026-11-13 22:37:38.856+01:00 INFO (MainThread) [supervisor.resolution.checks.base] Run check for multiple_data_disks/system[0m
+[32m2026-11-13 22:37:38.857+01:00 INFO (MainThread) [supervisor.resolution.check] System checks complete[0m
+[32m2026-11-13 22:37:38.857+01:00 INFO (MainThread) [supervisor.resolution.evaluate] Starting system evaluation with state running[0m
+[32m2026-11-13 22:37:38.877+01:00 INFO (MainThread) [supervisor.resolution.evaluate] System evaluation complete[0m
+[32m2026-11-13 22:37:38.877+01:00 INFO (MainThread) [supervisor.resolution.fixup] Starting system autofix at state running[0m
+[32m2026-11-13 22:37:38.878+01:00 INFO (MainThread) [supervisor.resolution.fixup] System autofix complete[0m
+[32m2026-11-13 22:51:18.715+01:00 INFO (MainThread) [supervisor.store.git] Cloning app /data/apps/git/59c5803b repository from https://github.com/Erazoma/mes-addons-haos[0m
+[33m2026-11-13 22:51:19.451+01:00 WARNING (SyncWorker_3) [supervisor.store.data] Can't read /data/apps/local/vinted-ai-hunter/config.yaml: does not match regular expression ^(?:https?|\[PROTO:\w+\]):\/\/\[HOST\]:\[PORT:\d+\].*$ for dictionary value @ data['webui']. Got 'http://[HOST]:[PORT]:8501'[0m
+[33m2026-11-13 22:51:19.452+01:00 WARNING (SyncWorker_3) [supervisor.apps.validate] App 'Livre de Recettes IA' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 22:51:19.469+01:00 WARNING (SyncWorker_6) [supervisor.apps.validate] App 'pyLoad-ng' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 22:51:19.469+01:00 WARNING (SyncWorker_6) [supervisor.apps.validate] App 'pyLoad-ng' uses legacy map type 'addon_config'; use 'app_config' instead.[0m
+[32m2026-11-13 22:51:19.897+01:00 INFO (MainThread) [supervisor.store] Loading apps from store: 269 all - 0 new - 0 remove[0m
+[32m2026-11-13 23:18:31.161+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/a0d7b954 repository from https://github.com/hassio-addons/repository[0m
+[32m2026-11-13 23:18:31.162+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/5c53de3b repository from https://github.com/esphome/home-assistant-addon[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/d5369777 repository from https://github.com/music-assistant/home-assistant-addon[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/core repository from https://github.com/home-assistant/apps[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/9074a9fa repository from https://github.com/brenner-tobias/ha-addons[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/539df76c repository from https://github.com/tr4nt0r/pyload-ng[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/2c829f0e repository from https://github.com/bytenoodle/hassioaddon[0m
+[32m2026-11-13 23:18:31.163+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/45df7312 repository from https://github.com/zigbee2mqtt/hassio-zigbee2mqtt[0m
+[32m2026-11-13 23:18:31.164+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/9904ebc2 repository from https://github.com/glasshome/homeassistant-addon[0m
+[32m2026-11-13 23:18:31.165+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/81f33d0f repository from https://github.com/homeassistant-ai/ha-mcp[0m
+[32m2026-11-13 23:18:31.166+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/bd7f4045 repository from https://github.com/d-two/hassio-addons[0m
+[32m2026-11-13 23:18:31.166+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/59c5803b repository from https://github.com/Erazoma/mes-addons-haos[0m
+[32m2026-11-13 23:18:31.166+01:00 INFO (MainThread) [supervisor.store.git] Update app /data/apps/git/db21ed7f repository from https://github.com/alexbelgium/hassio-addons[0m
+[33m2026-11-13 23:18:33.383+01:00 WARNING (SyncWorker_3) [supervisor.store.data] Can't read /data/apps/local/vinted-ai-hunter/config.yaml: does not match regular expression ^(?:https?|\[PROTO:\w+\]):\/\/\[HOST\]:\[PORT:\d+\].*$ for dictionary value @ data['webui']. Got 'http://[HOST]:[PORT]:8501'[0m
+[33m2026-11-13 23:18:33.385+01:00 WARNING (SyncWorker_3) [supervisor.apps.validate] App 'Livre de Recettes IA' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 23:18:33.400+01:00 WARNING (SyncWorker_0) [supervisor.apps.validate] App 'pyLoad-ng' uses deprecated 'arch' values: ['armhf', 'armv7', 'i386'][0m
+[33m2026-11-13 23:18:33.401+01:00 WARNING (SyncWorker_0) [supervisor.apps.validate] App 'pyLoad-ng' uses legacy map type 'addon_config'; use 'app_config' instead.[0m
+[32m2026-11-13 23:18:33.822+01:00 INFO (MainThread) [supervisor.store] Loading apps from store: 270 all - 1 new - 0 remove[0m
+[32m2026-11-13 23:18:49.043+01:00 INFO (SyncWorker_4) [supervisor.apps.app] Creating Home Assistant app data folder /data/apps/data/59c5803b_test_calculette[0m
+[32m2026-11-13 23:18:49.045+01:00 INFO (MainThread) [supervisor.docker.app] Starting build for 59c5803b/aarch64-addon-test_calculette:1.0.0[0m
+[32m2026-11-13 23:18:49.051+01:00 INFO (MainThread) [supervisor.docker.manager] Running command '['docker', 'buildx', 'build', '.', '--tag', '59c5803b/aarch64-addon-test_calculette:1.0.0', '--file', 'Dockerfile', '--platform', 'linux/arm64', '--pull', '--label', 'io.hass.version=1.0.0', '--label', 'io.hass.arch=aarch64', '--label', 'io.hass.type=app', '--label', 'io.hass.name=Test Calculette', '--label', 'io.hass.description=Mini calculatrice web accessible depuis le panneau latéral de Home Assistant', '--label', 'io.hass.url=https://github.com/Erazoma/mes-addons-haos', '--build-arg', 'BUILD_VERSION=1.0.0', '--build-arg', 'BUILD_ARCH=aarch64']' on docker:29.8.2-cli[0m
+[31m2026-11-13 23:18:52.530+01:00 ERROR (MainThread) [supervisor.docker.app] Docker build failed for 59c5803b/aarch64-addon-test_calculette:1.0.0 (exit code 1). Build output:
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 256B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/home-assistant/amd64-base:3.21
+#2 ERROR: no match for platform in manifest: not found
+------
+ > [internal] load metadata for ghcr.io/home-assistant/amd64-base:3.21:
+------
+Dockerfile:2
+--------------------
+   1 |     ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.21
+   2 | >>> FROM ${BUILD_FROM}
+   3 |     
+   4 |     RUN apk add --no-cache python3
+--------------------
+ERROR: failed to build: failed to solve: ghcr.io/home-assistant/amd64-base:3.21: failed to resolve source metadata for ghcr.io/home-assistant/amd64-base:3.21: no match for platform in manifest: not found
+[0m
+[31m2026-11-13 23:18:52.530+01:00 ERROR (MainThread) [supervisor.apps.app] Could not build image for app 59c5803b_test_calculette: Docker build failed for 59c5803b/aarch64-addon-test_calculette:1.0.0 (exit code 1). Build output:
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 256B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/home-assistant/amd64-base:3.21
+#2 ERROR: no match for platform in manifest: not found
+------
+ > [internal] load metadata for ghcr.io/home-assistant/amd64-base:3.21:
+------
+Dockerfile:2
+--------------------
+   1 |     ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.21
+   2 | >>> FROM ${BUILD_FROM}
+   3 |     
+   4 |     RUN apk add --no-cache python3
+--------------------
+ERROR: failed to build: failed to solve: ghcr.io/home-assistant/amd64-base:3.21: failed to resolve source metadata for ghcr.io/home-assistant/amd64-base:3.21: no match for platform in manifest: not found
+[0m
+[33m2026-11-13 23:18:52.821+01:00 WARNING (MainThread) [supervisor.jobs] Background job app_manager_install failed: An unknown error occurred while trying to build the image for app 59c5803b_test_calculette. Check Supervisor logs for details[0m
