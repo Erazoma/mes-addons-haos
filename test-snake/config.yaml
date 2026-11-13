@@ -1,5 +1,5 @@
 name: Test Snake
-version: "1.0.0"
+version: "1.1.0"
 slug: test_snake
 description: Mini-jeu Snake jouable directement depuis le panneau latéral de Home Assistant
 url: https://github.com/Erazoma/mes-addons-haos

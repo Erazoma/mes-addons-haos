@@ -190,14 +190,12 @@
         <div>
           <p class="title" id="overlay-title">Prêt ?</p>
           <p class="subtitle" id="overlay-text">Utilise les flèches du clavier pour guider le serpent.</p>
-          <div class="controls">
-            <button type="button" class="primary" id="play">Jouer</button>
-          </div>
         </div>
       </div>
     </div>
 
     <div class="controls">
+      <button type="button" class="primary" id="play">Jouer</button>
       <button type="button" id="replay">Rejouer</button>
     </div>
 
@@ -281,7 +279,6 @@
         reset();
         hideOverlay();
         running = true;
-        lastTime = performance.now();
         timer = setInterval(step, TICK_MS);
       }
 
@@ -386,7 +383,10 @@
       }
 
       playBtn.addEventListener("click", start);
-      replayBtn.addEventListener("click", start);
+      replayBtn.addEventListener("click", () => {
+        stop();
+        start();
+      });
 
       document.addEventListener("keydown", (event) => {
         const key = event.key;
