@@ -28,15 +28,23 @@ import workers as workers_module
 
 from flask import Flask, jsonify, request, send_from_directory
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s"
-)
-logger = logging.getLogger(__name__)
-
 # Permet de tester en local via variable d'environnement
 DATA_DIR = os.environ.get("HAOS_DATA_DIR", "/data")
 CONFIG_FILE = os.path.join(DATA_DIR, "addon_config.json")
+LOG_FILE = os.path.join(DATA_DIR, "addon.log")
+
+# Logger avec fichier rotatif (5 Mo x 3) pour l'onglet Logs du frontend
+os.makedirs(DATA_DIR, exist_ok=True)
+from logging.handlers import RotatingFileHandler
+_file_handler = RotatingFileHandler(LOG_FILE, maxBytes=5*1024*1024, backupCount=3, encoding="utf-8")
+_file_handler.setFormatter(logging.Formatter("%(asctime)s [%(name)s] %(levelname)s: %(message)s"))
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+    handlers=[logging.StreamHandler(), _file_handler]
+)
+logger = logging.getLogger(__name__)
 
 # Flask SANS static_url_path pour éviter le conflit avec la route /<path:filename>
 app = Flask(__name__, static_folder=os.path.join(APP_DIR, "www"))
