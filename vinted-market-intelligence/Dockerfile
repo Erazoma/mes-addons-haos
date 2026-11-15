@@ -9,7 +9,7 @@ RUN apk add --no-cache python3 py3-pip py3-requests curl git build-base wget
 WORKDIR /app
 
 # Copier le code source
-COPY config.yaml /app/config.yaml
+COPY config.json /app/config.json
 COPY run.sh /run.sh
 COPY app.py /app/app.py
 COPY scraper.py /app/scraper.py

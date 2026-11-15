@@ -1,5 +1,9 @@
-{
+﻿{
   "name": "Mes Add-ons Perso",
   "url": "https://github.com/Erazoma/mes-addons-haos",
-  "maintainer": "Alexis"
+  "maintainer": "Alexis",
+  "description": "Dépôt d'add-ons Home Assistant personnalisés",
+  "addons": [
+    "vinted-market-intelligence"
+  ]
 }
