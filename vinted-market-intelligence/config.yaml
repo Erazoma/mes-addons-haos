@@ -1,0 +1,44 @@
+name: "Vinted Market Intelligence & Sniper"
+version: "1.0.0"
+slug: vinted-market-intelligence
+description: "Add-on de veille et d'achat sur Vinted avec analyse IA Gemini (Phase 1 Observatoire + Phase 2 Sniper)"
+url: https://github.com/Erazoma/mes-addons-haos
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: application
+boot: auto
+init: false
+ingress: true
+panel_icon: mdi:shopping-search
+panel_title: Vinted Sniper
+options:
+  telegram_bot_token: ""
+  telegram_chat_id: ""
+  gemini_api_key: ""
+  gemini_models:
+    - gemini-2.5-flash
+    - gemini-2.5-flash-lite
+    - gemini-2.0-flash
+  phase1_duration_days: 7
+  scan_interval_seconds: 300
+  max_price: 0
+  blacklist: []
+schema:
+  telegram_bot_token: str?
+  telegram_chat_id: str?
+  gemini_api_key: str?
+  gemini_models:
+    - str?
+  phase1_duration_days: int?
+  scan_interval_seconds: int?
+  max_price: number?
+  blacklist:
+    - str?
+ports:
+  8123/tcp: 8123
+ports_description:
+  8123/tcp: Interface web de l'add-on Vinted Sniper (en plus de l'ingress)

@@ -1,6 +1,6 @@
 name: Test Calculette
 version: "1.0.0"
-slug: test_calculette
+slug: test-calculette
 description: Mini calculatrice web accessible depuis le panneau latéral de Home Assistant
 url: https://github.com/Erazoma/mes-addons-haos
 arch:

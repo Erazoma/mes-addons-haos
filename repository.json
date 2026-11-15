@@ -4,6 +4,7 @@
   "maintainer": "Alexis",
   "description": "Dépôt d'add-ons Home Assistant personnalisés",
   "addons": [
+    "test-calculette",
     "vinted-market-intelligence"
   ]
 }
