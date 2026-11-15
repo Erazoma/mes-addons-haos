@@ -13,6 +13,7 @@ startup: application
 boot: auto
 init: false
 ingress: true
+ingress_port: 8124
 panel_icon: mdi:shopping-search
 panel_title: Vinted Sniper
 options:
@@ -39,6 +40,6 @@ schema:
   blacklist:
     - str?
 ports:
-  8123/tcp: 8123
+  8124/tcp: 8124
 ports_description:
-  8123/tcp: Interface web de l'add-on Vinted Sniper (en plus de l'ingress)
+  8124/tcp: Interface web de l'add-on Vinted Sniper (en plus de l'ingress)

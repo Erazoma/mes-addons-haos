@@ -28,7 +28,7 @@ RUN mkdir -p /data
 RUN chmod a+x /run.sh && sed -i 's/\\r$//' /run.sh
 
 # Exposer le port pour l'Ingress HA et le port réseau optionnel
-EXPOSE 8123
+EXPOSE 8124
 
 # Commande par défaut : démarrer l'application
 CMD ["/run.sh"]

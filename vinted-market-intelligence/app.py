@@ -518,7 +518,7 @@ def api_system_status():
 
 def main():
     """Point d'entrée : initialise les bases de données et démarre le serveur."""
-    port = int(os.environ.get("PORT", 8123))
+    port = int(os.environ.get("PORT", 8124))
     host = os.environ.get("HOST", "0.0.0.0")
 
     # Initialisation des bases de données
