@@ -77,7 +77,7 @@
                                     <div class="flex items-center space-x-3">
                                         <h3 class="text-lg font-bold text-gray-900" x-text="s.name"></h3>
                                         <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold"
-                                            :class="{'bg-blue-100 text-blue-800': s.status === 'phase1', 'bg-amber-100 text-amber-800': s.status === 'pending_phase2', 'bg-green-100 text-green-800': s.status === 'phase2', 'bg-gray-100 text-gray-800': s.status === 'paused'}"
+                                            :class="{'bg-blue-100 text-blue-800': s.status === 'phase1_running', 'bg-amber-100 text-amber-800': s.status === 'phase1_done', 'bg-green-100 text-green-800': s.status === 'phase2_running', 'bg-gray-100 text-gray-800': s.status === 'paused'}"
                                             x-text="formatStatus(s.status)"></span>
                                     </div>
                                     <p class="text-sm text-gray-600 line-clamp-1" x-text="s.product_description"></p>
@@ -106,13 +106,13 @@
                     </div>
                 </div>
                                 <div class="flex items-center space-x-2">
-                                    <template x-if="s.status === 'paused' || s.status === 'pending_phase2'">
+                                    <template x-if="s.status === 'paused' || s.status === 'phase1_done'">
                                         <button @click="startPhase1(s.id)" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs font-medium">Relancer Phase 1</button>
                                     </template>
-                                    <template x-if="s.status === 'pending_phase2'">
+                                    <template x-if="s.status === 'phase1_done'">
                                         <button @click="startPhase2(s.id)" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-medium">Activer Sniper</button>
                                     </template>
-                                    <template x-if="s.status === 'phase1' || s.status === 'phase2'">
+                                    <template x-if="s.status === 'phase1_running' || s.status === 'phase2_running'">
                                         <button @click="pauseSearch(s.id)" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded text-xs font-medium">Pause</button>
                                     </template>
                                     <button @click="editSearch(s)" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1.5 rounded text-xs font-medium"><i class="fa-solid fa-pen"></i></button>
@@ -156,6 +156,7 @@
                             <div class="bg-white rounded-xl shadow p-6">
                                 <span class="text-xs font-semibold text-gray-400 uppercase">Prix Moyen / Médian</span>
                                 <p class="text-3xl font-bold text-gray-800 mt-2" x-text="(stats.metrics?.avg_price || 0).toFixed(2) + ' €'"></p>
+                                <p class="text-sm text-gray-500 mt-1">Médiane : <span x-text="(stats.metrics?.median_price || 0).toFixed(2) + ' €'"></span></p>
                             </div>
                             <div class="bg-white rounded-xl shadow p-6">
                                 <span class="text-xs font-semibold text-gray-400 uppercase">Délai Moyen avant Vente</span>
@@ -283,7 +284,7 @@
                     } catch (e) { console.error(e); }
                 },
                 formatStatus(s) {
-                    return {'phase1': 'Phase 1 (Observatoire)', 'pending_phase2': 'En attente', 'phase2': 'Phase 2 (Sniper)', 'paused': 'En pause'}[s] || s;
+                    return {'phase1_running': 'Phase 1 (Observatoire)', 'phase1_done': 'En attente (Prêt Phase 2)', 'phase2_running': 'Phase 2 (Sniper Actif)', 'paused': 'En pause'}[s] || s;
                 },
                 openSearchModal() {
                     this.editingSearchId = null;
@@ -341,6 +342,8 @@
                         const resp = await fetch('/api/config');
                         const data = await resp.json();
                         this.config = data.config || this.config;
+                        // Ne pas afficher la clé masquée : on laisse le champ vide
+                        if (this.config.gemini_api_key === '***') this.config.gemini_api_key = '';
                     } catch (e) { console.error(e); }
                 },
                 addModel() {

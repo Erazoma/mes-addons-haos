@@ -8,7 +8,7 @@ from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
-DATA_DIR = "/data"
+DATA_DIR = os.environ.get("HAOS_DATA_DIR", "/data")
 OBSERVATORY_DB = os.path.join(DATA_DIR, "observatory.db")
 SNIPER_AUDIT_DB = os.path.join(DATA_DIR, "sniper_audit.db")
 
@@ -437,7 +437,8 @@ def get_unsent_alerts(limit: int = 10):
     with get_connection(SNIPER_AUDIT_DB) as conn:
         c = conn.cursor()
         c.execute("""
-            SELECT a.*, sa.title, sa.url FROM alerts a
+            SELECT a.*, sa.title
+            FROM alerts a
             JOIN sniper_audit sa ON a.vinted_id = sa.vinted_id
             WHERE a.message_sent = 0
             ORDER BY a.created_at ASC

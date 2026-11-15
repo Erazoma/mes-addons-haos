@@ -34,10 +34,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-DATA_DIR = "/data"
+# Permet de tester en local via variable d'environnement
+DATA_DIR = os.environ.get("HAOS_DATA_DIR", "/data")
 CONFIG_FILE = os.path.join(DATA_DIR, "addon_config.json")
 
-app = Flask(__name__, static_folder=os.path.join(APP_DIR, "www"), static_url_path="")
+# Flask SANS static_url_path pour éviter le conflit avec la route /<path:filename>
+app = Flask(__name__, static_folder=os.path.join(APP_DIR, "www"))
 
 
 # ================================================================
@@ -263,7 +265,8 @@ def api_start_phase1(search_id):
     search, err, code = _require_search(search_id)
     if err:
         return err, code
-    if search.get("status") not in ("draft", "phase1_done"):
+    # Statuts acceptés : draft, phase1_done (après clôture), paused (en attente de reprise)
+    if search.get("status") not in ("draft", "phase1_done", "paused"):
         return jsonify({"error": "Statut incompatible pour démarrer la Phase 1"}), 400
     db.update_search(search_id, status="phase1_running", phase1_started_at=datetime.utcnow().isoformat())
     return jsonify({"message": "Phase 1 démarrée", "status": "phase1_running"})
@@ -275,16 +278,22 @@ def api_start_phase2(search_id):
     search, err, code = _require_search(search_id)
     if err:
         return err, code
+    # Phase 2 uniquement possible après clôture de la Phase 1 (statut 'phase1_done' / 'En attente')
     if search.get("status") != "phase1_done":
         return jsonify({"error": "La Phase 1 doit être terminée (statut 'En attente')"}), 400
-    max_price = request.get_json(force=True, silent=True).get("max_price_phase2") \
-        if request.is_json else None
-    if max_price:
+
+    # Récupération sécurisée du prix plafond optionnel (corps JSON absent = pas de prix plafond)
+    json_payload = request.get_json(force=True, silent=True)
+    if json_payload is None:
+        json_payload = {}
+    max_price_phase2 = json_payload.get("max_price_phase2")
+    if max_price_phase2 is not None:
         try:
-            max_price = float(max_price)
-            db.update_search(search_id, max_price_phase2=max_price)
+            max_price_phase2 = float(max_price_phase2)
+            db.update_search(search_id, max_price_phase2=max_price_phase2)
         except (ValueError, TypeError):
-            pass
+            return jsonify({"error": "Le prix plafond doit être un nombre."}), 400
+
     db.update_search(search_id, status="phase2_running", phase2_started_at=datetime.utcnow().isoformat())
     return jsonify({"message": "Phase 2 activée", "status": "phase2_running"})
 
@@ -348,6 +357,29 @@ def api_search_stats(search_id):
                 pass
     avg_sale_time = sum(durations) / len(durations) if durations else None
 
+    # Construction des métriques clés pour le frontend
+    price_stats = listing_stats.get("price_stats", {}) or {}
+
+    # Calcul du prix médian sur les annonces validées + sold
+    sold_prices = [l.get("final_price") for l in listings
+                   if l.get("ai_status") == "validated" and l.get("status") == "sold" and l.get("final_price")]
+    sold_prices.sort()
+    median_price = 0.0
+    if sold_prices:
+        n = len(sold_prices)
+        median_price = sold_prices[n // 2] if n % 2 else (sold_prices[n // 2 - 1] + sold_prices[n // 2]) / 2
+
+    metrics = {
+        "total": total,
+        "total_sold": price_stats.get("count", 0) or 0,
+        "avg_price": price_stats.get("avg_price", 0) or 0,
+        "median_price": median_price,
+        "avg_days_to_sell": (avg_sale_time / 24) if avg_sale_time else 0,
+        "deleted_pct": round(deleted_pct, 2),
+        "total_deleted": len(deleted),
+        "total_validated": listing_stats.get("by_ai_status", {}).get("validated", 0) or 0,
+    }
+
     return jsonify({
         "search": search,
         "listing_stats": listing_stats,
@@ -355,6 +387,8 @@ def api_search_stats(search_id):
         "ai_report": search.get("ai_report"),
         "deleted": {"count": len(deleted), "pct": round(deleted_pct, 2), "items": deleted[:50]},
         "avg_sale_time_hours": avg_sale_time,
+        "metrics": metrics,
+        "listings": listings,
     })
 
 
@@ -429,6 +463,10 @@ def api_save_config():
             new_config[key] = data[key]
     if "gemini_models" in new_config and not isinstance(new_config["gemini_models"], list):
         return jsonify({"error": "gemini_models doit être une liste ordonnée."}), 400
+    # Ne pas écraser la clé Gemini si elle est vide ou masquée (sécurité)
+    if new_config.get("gemini_api_key") in ("", "***", None):
+        current_cfg = config_provider.get_config()
+        new_config["gemini_api_key"] = current_cfg.get("gemini_api_key", "")
     config_provider.save_config(new_config)
     # Redémarre les workers pour appliquer la nouvelle config
     try:
