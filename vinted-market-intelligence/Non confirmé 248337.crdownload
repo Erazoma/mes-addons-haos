@@ -1,0 +1,85 @@
+#6 CACHED
+
+#7 [ 7/14] COPY gemini.py /app/gemini.py
+#7 CACHED
+
+#8 [ 5/14] COPY app.py /app/app.py
+#8 CACHED
+
+#9 [ 6/14] COPY scraper.py /app/scraper.py
+#9 CACHED
+
+#10 [10/14] COPY workers.py /app/workers.py
+#10 CACHED
+
+#11 [ 2/14] RUN apk add --no-cache python3 py3-pip py3-requests curl git build-base wget
+#11 CACHED
+
+#12 [ 8/14] COPY telegram.py /app/telegram.py
+#12 CACHED
+
+#13 [ 3/14] WORKDIR /app
+#13 CACHED
+
+#14 [ 4/14] COPY run.sh /run.sh
+#14 CACHED
+
+#15 [11/14] COPY www/ /app/www/
+#15 CACHED
+
+#16 [12/14] RUN pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil
+#16 0.842 error: externally-managed-environment
+#16 0.842 
+#16 0.842 × This environment is externally managed
+#16 0.842 ╰─> 
+#16 0.842     The system-wide python installation should be maintained using the system
+#16 0.842     package manager (apk) only.
+#16 0.842     
+#16 0.842     If the package in question is not packaged already (and hence installable via
+#16 0.842     "apk add py3-somepackage"), please consider installing it inside a virtual
+#16 0.842     environment, e.g.:
+#16 0.842     
+#16 0.842     python3 -m venv /path/to/venv
+#16 0.842     . /path/to/venv/bin/activate
+#16 0.842     pip install mypackage
+#16 0.842     
+#16 0.842     To exit the virtual environment, run:
+#16 0.842     
+#16 0.842     deactivate
+#16 0.842     
+#16 0.842     The virtual environment is not deleted, and can be re-entered by re-sourcing
+#16 0.842     the activate file.
+#16 0.842     
+#16 0.842     To automatically manage virtual environments, consider using pipx (from the
+#16 0.842     pipx package).
+#16 0.842 
+#16 0.842 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+#16 0.842 hint: See PEP 668 for the detailed specification.
+#16 ERROR: process "/bin/ash -o pipefail -c pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil" did not complete successfully: exit code: 1
+------
+ > [12/14] RUN pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil:
+0.842     deactivate
+0.842     
+0.842     The virtual environment is not deleted, and can be re-entered by re-sourcing
+0.842     the activate file.
+0.842     
+0.842     To automatically manage virtual environments, consider using pipx (from the
+0.842     pipx package).
+0.842 
+0.842 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+0.842 hint: See PEP 668 for the detailed specification.
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidDefaultArgInFrom: Default value for ARG ${BUILD_FROM} results in empty or invalid base image name (line 3)
+Dockerfile:22
+--------------------
+  20 |     
+  21 |     # Installer les dépendances Python (Flask pour l'API web, Pillow pour les images Gemini Vision)
+  22 | >>> RUN pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil
+  23 |     
+  24 |     # Préparer les données de l'application
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/ash -o pipefail -c pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil" did not complete successfully: exit code: 1
+[0m
+[33m2026-11-16 22:28:55.572+01:00 WARNING (MainThread) [supervisor.jobs] Background job app_manager_install failed: An unknown error occurred while trying to build the image for app 66c6bf1b_vinted-market-intelligence. Check Supervisor logs for details[0m
