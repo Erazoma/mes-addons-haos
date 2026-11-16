@@ -68,7 +68,7 @@ DEFAULT_CONFIG = {
 
 
 class ConfigProvider:
-    """Fournit la configuration courante (depuis /data/addon_config.json)."""
+    """Fournit la configuration courante (depuis /data/options.json et /data/addon_config.json)."""
 
     def __init__(self):
         self._lock = threading.Lock()
@@ -77,10 +77,28 @@ class ConfigProvider:
 
     def _load(self):
         try:
+            # 1. Charger depuis addon_config.json (interface web)
             if os.path.exists(CONFIG_FILE):
                 with open(CONFIG_FILE, "r", encoding="utf-8") as f:
                     data = json.load(f)
                 self._config.update({k: v for k, v in data.items() if k in DEFAULT_CONFIG})
+                logger.info("Configuration chargée depuis addon_config.json")
+
+            # 2. Charger depuis options.json de Home Assistant (onglet Configuration de HA) - Prioritaire
+            options_file = os.path.join(DATA_DIR, "options.json")
+            if os.path.exists(options_file):
+                with open(options_file, "r", encoding="utf-8") as f:
+                    ha_options = json.load(f)
+                updated_ha = False
+                for k, v in ha_options.items():
+                    if k in DEFAULT_CONFIG and v is not None:
+                        if v != "" and v != []:
+                            self._config[k] = v
+                            updated_ha = True
+                        elif k not in self._config or not self._config[k]:
+                            self._config[k] = v
+                if updated_ha:
+                    logger.info("Configuration surchargée/complétée par options.json de Home Assistant")
         except Exception as e:
             logger.error(f"Erreur chargement config: {e}")
 
