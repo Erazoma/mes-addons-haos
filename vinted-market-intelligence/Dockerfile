@@ -19,7 +19,7 @@ COPY workers.py /app/workers.py
 COPY www/ /app/www/
 
 # Installer les dépendances Python (Flask pour l'API web, Pillow pour les images Gemini Vision)
-RUN pip install --no-cache-dir flask requests google-generativeai Pillow python-dateutil
+RUN pip install --no-cache-dir --break-system-packages flask requests google-generativeai Pillow python-dateutil
 
 # Préparer les données de l'application
 RUN mkdir -p /data
