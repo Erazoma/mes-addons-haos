@@ -1,5 +1,5 @@
 name: Vinted Market Intelligence & Sniper
-version: "1.0.0"
+version: "1.2.1"
 slug: vinted-market-intelligence
 description: "Add-on de veille et d'achat sur Vinted avec analyse IA Gemini (Phase 1 Observatoire + Phase 2 Sniper)"
 url: https://github.com/Erazoma/mes-addons-haos
